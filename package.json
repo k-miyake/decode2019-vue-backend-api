@@ -13,6 +13,8 @@
   "description": "",
   "devDependencies": {
     "@azure/functions": "^1.0.1-beta1",
+    "@types/request-promise-native": "^1.0.16",
+    "@types/uuid": "^3.4.4",
     "typescript": "^3.3.3"
   },
   "dependencies": {

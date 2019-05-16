@@ -3,13 +3,16 @@ import * as request from "request-promise-native"
 import * as uuidv4 from "uuid/v4"
  
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+
+
+    console.log(req.body.target);
     const target = (req.query.target || (req.body && req.body.target));
     const subscriptionKey = process.env.TRANSLATOR_TEXT_KEY;
     if (!subscriptionKey) {
         throw new Error('Environment variable for your subscription key is not set.')
     };
 
-    const options = {
+    const options: any = {
         method: 'POST',
         baseUrl: 'https://api.cognitive.microsofttranslator.com/',
         url: 'translate',
@@ -28,7 +31,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         json: true,
     };
     
-    const response = await request(options);
+    const response: request.FullResponse = await request(options);
 
     if (target) {
         context.res = {
